@@ -155,31 +155,29 @@ const states = [
 ];
 
 function App() {
-  const [cityVisible, setCityVisibility] = useState("none");
-  const [townVisible, settownVisible] = useState("none");
+  const [cityVisible, setCityVisibility] = useState({display:"none"});
+  const [townVisible, settownVisible] = useState({display:"none"});
   function DispalyCity(){
-    if(townVisible === "none"){
-      settownVisible("");
-    }else{
-      settownVisible("none")
-    }
+    if(cityVisible.display === "none")
+     setCityVisibility({display:"block"});
+     else
+     setCityVisibility({display:"none"});
   }
   function DispalyTown(){
-    if(cityVisible === "none"){
-      setCityVisibility("");
-    }else{
-      setCityVisibility("none")
-    }
+    if(townVisible.display == "none")
+    settownVisible({display: "block"});
+    else
+    settownVisible({display: "none"});
   }
   return (<div id="main">
   <ul>{states.map((state, idx)=>{
-    return <li onClick = {DispalyCity}  id = {"state" + (idx + 1)} key = {idx}>{state.name}
-    <ul>
+    return <li onClick = {DispalyCity}  id = {"state" + (idx + 1)} key = {idx}>{state.name} {idx}
+    <ul style = {cityVisible}>
       {states.map((city, cityindex)=>{
-        return <li style = {{"display":{cityVisible}}} onClick = {DispalyTown}  id = {"city" + (city + 1)} key = {cityindex}>{city.cities.name}
-        <ul>
+        return <li   onClick = {DispalyTown} id = {"city" + (city + 1)} key = {cityindex}>{city.cities[0].name}
+        <ul style = {townVisible}>
           {states.map((town, townIndex)=>{
-            return <li style = {{"display":{townVisible}}} id = {"town" + (townIndex + 1)} key = {townIndex}>{town.cities.towns}</li>
+            return <li  id = {"town" + (townIndex + 1)} key = {townIndex}>{town.cities[0].towns[0].name} {townIndex}</li>
           })}
         </ul>
         </li>
