@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import "./../styles/App.css";
-
+import ListState from './ListState';
 // Do not alter the states const and values inside it.
 const states = [
   {
@@ -155,54 +155,12 @@ const states = [
 ];
 
 function App() {
-  const [cityVisible, setCityVisibility] = useState({display:"none"});
-  const [townVisible, settownVisible] = useState({display:"none"});
-  function DispalyCity(){
-    if(cityVisible.display === "none")
-     setCityVisibility({display:"block"});
-     else
-     setCityVisibility({display:"none"});
-  }
-  function DispalyTown(){
-    if(townVisible.display == "none")
-    settownVisible({display: "block"});
-    else
-    settownVisible({display: "none"});
-  }
   return (<div id="main">
-  <ul>{states.map((state, idx)=>{
-    return <li onClick = {DispalyCity}  id = {"state" + (idx + 1)} key = {idx}>{state.name} {idx}
-    <ul style = {cityVisible}>
-      {states.map((city, cityindex)=>{
-        return <li   onClick = {DispalyTown} id = {"city" + (city + 1)} key = {cityindex}>{city.cities[0].name}
-        <ul style = {townVisible}>
-          {states.map((town, townIndex)=>{
-            return <li  id = {"town" + (townIndex + 1)} key = {townIndex}>{town.cities[0].towns[0].name} {townIndex}</li>
-          })}
-        </ul>
-        </li>
+    <ul>
+      {states.map((state, stateIndex)=>{
+       return <ListState StateName = {state} key = {stateIndex}/>
       })}
     </ul>
-    </li>
-  })}</ul>
-  
-  {/* <ul>
-    {states.map((sta, stateIndex)=>{
-      return <li key = {stateIndex}>{sta.name}
-      <ul>
-      {states[stateIndex].map((city, cityIndex)=>{
-      return <li key = {cityIndex}>{city.name}
-      <ul>
-      {states[stateIndex].cities[cityIndex].map((town, townIndex)=>{
-      return <li key = {townIndex}>{town.name}</li>
-    })}
-      </ul>
-      </li>
-    })}
-      </ul>
-      </li>
-    })}
-    </ul> */}
   </div>);
 }
 
