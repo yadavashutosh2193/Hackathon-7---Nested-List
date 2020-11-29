@@ -3,10 +3,10 @@ import ListCity from './ListCity';
 
 function ListState(props){
     const [ShowCity, setShowCity] = useState(false);
-    return <><li onClick = {()=> setShowCity(!ShowCity)}>{props.StateName.name}</li>
+    return <><li onClick = {()=> setShowCity(!ShowCity)} id = {"state" + props.id}>{props.StateName.name}</li>
     {ShowCity ? <ul>
         {props.StateName.cities.map((Cityname, cityIndex)=>{
-           return <ListCity CityName = {Cityname} key = {cityIndex}/>
+           return <ListCity CityName = {Cityname} key = {cityIndex} id = {cityIndex}/>
         })}
     </ul> : null}
     </>

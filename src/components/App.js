@@ -158,7 +158,7 @@ function App() {
   return (<div id="main">
     <ul>
       {states.map((state, stateIndex)=>{
-       return <ListState StateName = {state} key = {stateIndex}/>
+       return <ListState StateName = {state} key = {stateIndex}id = {stateIndex}/>
       })}
     </ul>
   </div>);
